@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand Savorly VIP | Ultimate Food Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        amber: { 600: '#d97706', 700: '#b45309' }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Top Notification Bar -->
+    <div class="bg-gradient-to-r from-amber-600 to-orange-600 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium shadow-md">
+        🌟 Use code <span class="bg-white/20 px-2 py-0.5 rounded font-bold">VIP2026</span> for 20% off your first luxury order & table booking!
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 bg-gradient-to-tr from-amber-500 to-orange-500 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/20 group-hover:scale-105 transition">
+                    <i class="fa-solid fa-utensils text-white text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-xl sm:text-2xl font-black tracking-wider bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">SAVORLY</span>
+                    <span class="block text-[10px] tracking-widest text-amber-500 font-semibold uppercase">VIP Experience</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#menu" class="text-slate-300 hover:text-amber-400 transition">VIP Menu</a>
+                <a href="#booking" class="text-slate-300 hover:text-amber-400 transition">Table Booking</a>
+                <a href="#tracking" class="text-slate-300 hover:text-amber-400 transition">Order Tracking</a>
+                <a href="#ugc" class="text-slate-300 hover:text-amber-400 transition">Food Stories</a>
+            </nav>
+
+            <!-- Actions (Cart & Auth) -->
+            <div class="flex items-center gap-4">
+                <!-- Cart Button -->
+                <button onclick="toggleCart()" class="relative p-2.5 bg-slate-800 hover:bg-slate-700 text-amber-400 rounded-xl border border-slate-700 transition shadow">
+                    <i class="fa-solid fa-bag-shopping text-lg"></i>
+                    <span id="cartBadge" class="absolute -top-1.5 -right-1.5 bg-amber-500 text-slate-950 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center shadow">0</span>
+                </button>
+
+                <!-- Auth Buttons -->
+                <div class="hidden sm:flex items-center gap-2">
+                    <button onclick="openAuthModal('signin')" class="px-4 py-2 text-sm font-semibold text-slate-300 hover:text-white transition">Sign In</button>
+                    <button onclick="openAuthModal('signup')" class="px-5 py-2 text-sm font-semibold bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 rounded-xl shadow-lg shadow-amber-500/20 transition">Sign Up</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-slate-300 hover:text-white">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-2 pb-4 space-y-2">
+            <a href="#menu" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-amber-400">VIP Menu</a>
+            <a href="#booking" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-amber-400">Table Booking</a>
+            <a href="#tracking" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-amber-400">Order Tracking</a>
+            <a href="#ugc" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-amber-400">Food Stories</a>
+            <div class="pt-2 flex gap-2">
+                <button onclick="openAuthModal('signin'); toggleMobileMenu();" class="flex-1 py-2 bg-slate-800 text-slate-200 rounded-lg font-medium text-sm">Sign In</button>
+                <button onclick="openAuthModal('signup'); toggleMobileMenu();" class="flex-1 py-2 bg-amber-500 text-slate-950 rounded-lg font-bold text-sm">Sign Up</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with Integrated Sign-Up Card -->
+    <section class="relative overflow-hidden py-16 lg:py-24 bg-gradient-to-b from-slate-900 to-slate-950 border-b border-slate-800/60">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#d97706_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left Hero Content -->
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold tracking-wide uppercase">
+                    <i class="fa-solid fa-crown text-amber-500"></i> Michelin Star Experience at Home
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-tight">
+                    Exquisite Tastes, <br><span class="bg-gradient-to-r from-amber-400 via-orange-400 to-red-500 bg-clip-text text-transparent">Delivered VIP Style</span>
+                </h1>
+                <p class="text-slate-400 text-base sm:text-lg max-w-xl mx-auto lg:mx-0">
+                    Savor world-class culinary art crafted by master chefs. Reserve your private dining table or order luxury meals straight to your doorstep with instant tracking.
+                </p>
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                    <a href="#menu" class="px-8 py-3.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-bold rounded-xl shadow-xl shadow-amber-500/20 transition flex items-center gap-2">
+                        <i class="fa-solid fa-utensils"></i> Explore VIP Menu
+                    </a>
+                    <a href="#booking" class="px-8 py-3.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold rounded-xl border border-slate-700 transition flex items-center gap-2">
+                        <i class="fa-solid fa-calendar-check text-amber-400"></i> Book a Table
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Hero Card (VIP Membership & Quick Sign-up Card) -->
+            <div class="lg:col-span-5">
+                <div class="bg-slate-900/90 border border-amber-500/30 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden backdrop-blur-xl">
+                    <div class="absolute -top-12 -right-12 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl"></div>
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/20 flex items-center justify-center text-amber-400">
+                                <i class="fa-solid fa-id-card text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-white">VIP Club Pass</h3>
+                                <p class="text-xs text-slate-400">Unlock priority delivery & perks</p>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-1 bg-amber-500/20 text-amber-400 text-xs font-bold rounded-lg border border-amber-500/30">Free Tier</span>
+                    </div>
+
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-center gap-3 text-sm text-slate-300">
+                            <i class="fa-solid fa-circle-check text-amber-400"></i> 20% Discount on all orders
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-slate-300">
+                            <i class="fa-solid fa-circle-check text-amber-400"></i> Dedicated VIP table reservation
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-slate-300">
+                            <i class="fa-solid fa-circle-check text-amber-400"></i> Real-time kitchen priority tracking
+                        </div>
+                    </div>
+
+                    <button onclick="openAuthModal('signup')" class="w-full py-3.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-bold rounded-xl shadow-lg shadow-amber-500/20 transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-user-plus"></i> Open Sign Up Card
+                    </button>
+                    <p class="text-center text-xs text-slate-500 mt-4">Already have an account? <button onclick="openAuthModal('signin')" class="text-amber-400 underline font-semibold">Sign In here</button></p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16 w-full">
+
+        <!-- VIP Menu Section -->
+        <section id="menu" class="space-y-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <span class="text-amber-500 text-xs font-bold uppercase tracking-widest">Handcrafted Delicacies</span>
+                    <h2 class="text-3xl font-black text-white">Our Signature VIP Menu</h2>
+                </div>
+                <!-- Search & Filters -->
+                <div class="flex flex-wrap items-center gap-3">
+                    <div class="relative">
+                        <i class="fa-solid fa-search absolute left-3.5 top-3 text-slate-400 text-sm"></i>
+                        <input type="text" id="searchInput" oninput="filterMenu()" placeholder="Search dishes..." class="bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2 text-sm text-white focus:outline-none focus:border-amber-500 w-full sm:w-64">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category Pills -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+                <button onclick="setCategory('All')" id="cat-All" class="cat-btn px-5 py-2.5 rounded-xl text-sm font-semibold bg-amber-500 text-slate-950 shadow-md whitespace-nowrap transition">All Items</button>
+                <button onclick="setCategory('Appetizers')" id="cat-Appetizers" class="cat-btn px-5 py-2.5 rounded-xl text-sm font-semibold bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800 whitespace-nowrap transition">Appetizers</button>
+                <button onclick="setCategory('Main Course')" id="cat-Main Course" class="cat-btn px-5 py-2.5 rounded-xl text-sm font-semibold bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800 whitespace-nowrap transition">Main Course</button>
+                <button onclick="setCategory('Desserts')" id="cat-Desserts" class="cat-btn px-5 py-2.5 rounded-xl text-sm font-semibold bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800 whitespace-nowrap transition">Desserts</button>
+                <button onclick="setCategory('Beverages')" id="cat-Beverages" class="cat-btn px-5 py-2.5 rounded-xl text-sm font-semibold bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800 whitespace-nowrap transition">Beverages</button>
+            </div>
+
+            <!-- Food Cards Grid -->
+            <div id="foodGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Populated via JavaScript -->
+            </div>
+        </section>
+
+        <!-- Table Booking Section -->
+        <section id="booking" class="bg-slate-900/80 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-xl relative overflow-hidden">
+            <div class="max-w-3xl mx-auto space-y-6">
+                <div class="text-center space-y-2">
+                    <span class="text-amber-500 text-xs font-bold uppercase tracking-widest">Reserve Your Spot</span>
+                    <h2 class="text-3xl font-black text-white">VIP Table Reservation</h2>
+                    <p class="text-slate-400 text-sm">Experience fine dining with priority seating and personalized service.</p>
+                </div>
+                <form id="bookingForm" onsubmit="handleBooking(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Your Full Name</label>
+                        <input type="text" id="bookName" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500" placeholder="John Doe">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Phone Number</label>
+                        <input type="tel" id="bookPhone" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500" placeholder="+92 300 1234567">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Reservation Date</label>
+                        <input type="date" id="bookDate" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Time Slot</label>
+                        <select id="bookTime" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                            <option>07:00 PM - Dinner</option>
+                            <option>08:30 PM - Late Dinner</option>
+                            <option>01:00 PM - Lunch</option>
+                            <option>04:00 PM - High Tea</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Number of Guests</label>
+                        <select id="bookGuests" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                            <option>2 Persons (Couple)</option>
+                            <option>4 Persons (Family)</option>
+                            <option>6 Persons (Group)</option>
+                            <option>10+ VIP Lounge</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">Seating Preference</label>
+                        <select id="bookArea" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                            <option>Rooftop View</option>
+                            <option>Indoor Luxury Hall</option>
+                            <option>Private Booth</option>
+                        </select>
+                    </div>
+                    <div class="sm:col-span-2 pt-2">
+                        <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-bold rounded-xl shadow-lg shadow-amber-500/20 transition">
+                            Confirm VIP Table Reservation
+                        </button>
+                    </div>
+                </form>
+                <div id="bookingSuccess" class="hidden p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-emerald-400 text-center font-medium text-sm">
+                    🎉 Table reserved successfully! Our host will contact you shortly.
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Order Tracking Section -->
+        <section id="tracking" class="bg-slate-900/80 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-xl space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <span class="text-amber-500 text-xs font-bold uppercase tracking-widest">Real-Time Updates</span>
+                    <h2 class="text-3xl font-black text-white">Live Order Tracking</h2>
+                </div>
+                <div class="flex items-center gap-2">
+                    <input type="text" id="trackInput" placeholder="Enter Order ID (e.g., #VIP-892)" class="bg-slate-950 border border-slate-700 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+                    <button onclick="trackOrder()" class="px-5 py-2 bg-amber-500 text-slate-950 font-bold text-sm rounded-xl hover:bg-amber-600 transition">Track</button>
+                </div>
+            </div>
+
+            <!-- Progress Tracker Bar -->
+            <div id="trackerBox" class="p-6 bg-slate-950 border border-slate-800 rounded-2xl space-y-6">
+                <div class="flex items-center justify-between text-xs text-slate-400 font-semibold uppercase tracking-wider">
+                    <span>Order Placed</span>
+                    <span>Kitchen Prep</span>
+                    <span>Out for Delivery</span>
+                    <span>Delivered</span>
+                </div>
+                <!-- Progress Line -->
+                <div class="relative w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                    <div id="trackProgressBar" class="absolute left-0 top-0 bottom-0 bg-amber-500 w-2/4 transition-all duration-500 rounded-full"></div>
+                </div>
+                <div class="flex items-center justify-between text-sm">
+                    <span id="trackStatusText" class="text-amber-400 font-bold"><i class="fa-solid fa-fire-burner"></i> Kitchen Preparing Your Meal</span>
+                    <span class="text-slate-400">Estimated Arrival: <strong class="text-white">25 Mins</strong></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community UGC Stories Section -->
+        <section id="ugc" class="space-y-8">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                <div>
+                    <span class="text-amber-500 text-xs font-bold uppercase tracking-widest">Foodie Community</span>
+                    <h2 class="text-3xl font-black text-white">VIP UGC Food Stories</h2>
+                </div>
+                <button onclick="openUGCModal()" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-amber-400 font-semibold rounded-xl border border-slate-700 transition flex items-center gap-2 text-sm">
+                    <i class="fa-solid fa-camera"></i> Share Your Food Story
+                </button>
+            </div>
+
+            <!-- UGC Grid -->
+            <div id="ugcGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Populated via JavaScript -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 bg-gradient-to-tr from-amber-500 to-orange-500 rounded-xl flex items-center justify-center text-white">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+                    <span class="text-xl font-black tracking-wider text-white">SAVORLY VIP</span>
+                </div>
+                <p class="text-sm text-slate-400">The premier destination for luxury food delivery, fine dining reservations, and authentic culinary stories.</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-sm text-slate-400">
+                    <li><a href="#menu" class="hover:text-amber-400 transition">VIP Menu</a></li>
+                    <li><a href="#booking" class="hover:text-amber-400 transition">Table Booking</a></li>
+                    <li><a href="#tracking" class="hover:text-amber-400 transition">Order Tracking</a></li>
+                    <li><a href="#ugc" class="hover:text-amber-400 transition">Food Stories</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4">Support & Hours</h4>
+                <p class="text-sm text-slate-400">Open 24/7 for VIP Deliveries.</p>
+                <p class="text-sm text-slate-400 mt-2">Helpline: +92 (0) 42 111-SAVORLY</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4">Newsletter</h4>
+                <p class="text-sm text-slate-400 mb-3">Subscribe to get secret recipes & VIP discount codes.</p>
+                <div class="flex gap-2">
+                    <input type="email" placeholder="Your email" class="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500 flex-1">
+                    <button onclick="alert('Subscribed successfully!')" class="bg-amber-500 text-slate-950 px-4 py-2 font-bold rounded-xl text-sm">Join</button>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 border-t border-slate-800 text-center text-xs text-slate-500">
+            &copy; 2026 Grand Savorly VIP Platform. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Slide-over Cart Drawer -->
+    <div id="cartDrawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm" onclick="toggleCart()"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-slate-900 border-l border-slate-800 p-6 flex flex-col justify-between shadow-2xl">
+                <div>
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2"><i class="fa-solid fa-bag-shopping text-amber-500"></i> Your VIP Cart</h3>
+                        <button onclick="toggleCart()" class="text-slate-400 hover:text-white p-2"><i class="fa-solid fa-xmark text-lg"></i></button>
+                    </div>
+                    <div id="cartItemsContainer" class="py-6 space-y-4 max-h-[50vh] overflow-y-auto">
+                        <!-- Items rendered here -->
+                    </div>
+                </div>
+                <div class="border-t border-slate-800 pt-4 space-y-4">
+                    <div class="flex items-center justify-between text-base font-bold text-white">
+                        <span>Total Amount:</span>
+                        <span id="cartTotalPrice" class="text-amber-400">$0.00</span>
+                    </div>
+                    <button onclick="checkoutCart()" class="w-full py-3.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-bold rounded-xl shadow-lg transition">
+                        Proceed to Secure Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Modal (Sign In / Sign Up Card) -->
+    <div id="authModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+        <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm" onclick="closeAuthModal()"></div>
+        <div class="bg-slate-900 border border-slate-700 rounded-3xl p-6 sm:p-8 w-full max-w-md relative z-10 shadow-2xl space-y-6">
+            <div class="flex items-center justify-between">
+                <h3 id="authTitle" class="text-xl font-bold text-white">Create VIP Account</h3>
+                <button onclick="closeAuthModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <form onsubmit="handleAuthSubmit(event)" class="space-y-4">
+                <div id="nameFieldContainer">
+                    <label class="block text-xs font-medium text-slate-300 mb-1">Full Name</label>
+                    <input type="text" id="authName" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500" placeholder="Ali Khan">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-300 mb-1">Email Address</label>
+                    <input type="email" id="authEmail" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500" placeholder="ali@example.com">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-300 mb-1">Password</label>
+                    <input type="password" id="authPass" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500" placeholder="••••••••">
+                </div>
+                <button type="submit" id="authSubmitBtn" class="w-full py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 font-bold rounded-xl shadow transition">Sign Up</button>
+            </form>
+            <div class="text-center text-xs text-slate-400">
+                <p id="authToggleText">Already have an account? <button onclick="switchAuthMode()" class="text-amber-400 font-bold underline">Sign In</button></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload UGC Story Modal -->
+    <div id="ugcModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+        <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm" onclick="closeUGCModal()"></div>
+        <div class="bg-slate-900 border border-slate-700 rounded-3xl p-6 sm:p-8 w-full max-w-md relative z-10 shadow-2xl space-y-6">
+            <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold text-white">Share Food Story</h3>
+                <button onclick="closeUGCModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <form onsubmit="handleUGCSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-medium text-slate-300 mb-1">Dish / Story Title</label>
+                    <input type="text" id="ugcTitle" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500" placeholder="Truffle Mushroom Burger">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-300 mb-1">Your Name</label>
+                    <input type="text" id="ugcAuthor" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500" placeholder="Chef Sarah">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-300 mb-1">Image URL</label>
+                    <input type="url" id="ugcImage" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500" placeholder="https://images.unsplash.com/photo-...">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-300 mb-1">Review / Description</label>
+                    <textarea id="ugcDesc" rows="3" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500" placeholder="Absolute masterpiece of flavors..."></textarea>
+                </div>
+                <button type="submit" class="w-full py-3 bg-amber-500 text-slate-950 font-bold rounded-xl shadow transition">Publish Story</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Sample VIP Food Menu Data
+        const foodMenu = [
+            { id: 1, name: "Truffle Wagyu Burger", category: "Main Course", price: 24.99, rating: 4.9, time: "20 min", image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80", desc: "Prime Wagyu beef patty with black truffle aioli & aged cheddar." },
+            { id: 2, name: "Saffron Lobster Risotto", category: "Main Course", price: 38.50, rating: 5.0, time: "30 min", image: "https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?auto=format&fit=crop&w=600&q=80", desc: "Fresh Atlantic lobster tail over creamy saffron infused Arborio rice." },
+            { id: 3, name: "Crispy Calamari Rings", category: "Appetizers", price: 16.00, rating: 4.7, time: "15 min", image: "https://images.unsplash.com/photo-1599487488170-d33ec9c24090?auto=format&fit=crop&w=600&q=80", desc: "Lightly battered baby squid served with zesty garlic herb mayo." },
+            { id: 4, name: "Belgian Chocolate Lava Cake", category: "Desserts", price: 12.99, rating: 4.8, time: "15 min", image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=80", desc: "Warm molten center paired with Madagascar vanilla bean ice cream." },
+            { id: 5, name: "Artisanal Berry Mojito", category: "Beverages", price: 8.50, rating: 4.6, time: "10 min", image: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80", desc: "Fresh muddled berries, mint leaves, lime juice, and sparkling soda." },
+            { id: 6, name: "Tuscan Garlic Bruschetta", category: "Appetizers", price: 14.00, rating: 4.8, time: "12 min", image: "https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?auto=format&fit=crop&w=600&q=80", desc: "Grilled artisan bread topped with heirloom tomatoes, basil, and balsamic glaze." }
+        ];
+
+        // Sample UGC Stories
+        let ugcStories = [
+            { id: 1, title: "Best Wagyu in Town!", author: "Hamza R.", image: "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=600&q=80", desc: "Ordered the Truffle Wagyu Burger and it completely blew my mind!", likes: 42, comments: 5 },
+            { id: 2, title: "Lobster night with family", author: "Ayesha K.", image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80", desc: "The ambiance and the lobster risotto were top notch. Highly recommended!", likes: 38, comments: 3 }
+        ];
+
+        let cart = [];
+        let currentCategory = 'All';
+        let authMode = 'signup';
+
+        // Initialize App
+        window.onload = function() {
+            renderMenu(foodMenu);
+            renderUGC();
+            updateCartBadge();
+            document.getElementById('bookDate').valueAsDate = new Date();
+        };
+
+        // Render Menu Cards
+        function renderMenu(items) {
+            const grid = document.getElementById('foodGrid');
+            if (items.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-500">No dishes found matching your criteria.</div>`;
+                return;
+            }
+            grid.innerHTML = items.map(item => `
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-xl hover:border-amber-500/50 transition flex flex-col justify-between group">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span class="absolute top-3 left-3 bg-slate-950/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-amber-400 border border-slate-700">
+                                ${item.category}
+                            </span>
+                        </div>
+                        <div class="p-6 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <h3 class="font-bold text-lg text-white">${item.name}</h3>
+                                <span class="text-amber-400 font-black text-lg">$${item.price.toFixed(2)}</span>
+                            </div>
+                            <p class="text-slate-400 text-sm line-clamp-2">${item.desc}</p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-slate-800/60 mt-4">
+                        <div class="flex items-center gap-3 text-xs text-slate-400">
+                            <span><i class="fa-solid fa-star text-amber-400"></i> ${item.rating}</span>
+                            <span><i class="fa-solid fa-clock text-slate-500"></i> ${item.time}</span>
+                        </div>
+                        <button onclick="addToCart(${item.id})" class="px-4 py-2.5 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-xl text-xs shadow transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Category Filter
+        function setCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('bg-amber-500', 'text-slate-950', 'shadow-md');
+                btn.classList.add('bg-slate-900', 'text-slate-300', 'border', 'border-slate-800');
+            });
+            const activeBtn = document.getElementById(`cat-${cat}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-slate-900', 'text-slate-300', 'border', 'border-slate-800');
+                activeBtn.classList.add('bg-amber-500', 'text-slate-950', 'shadow-md');
+            }
+            filterMenu();
+        }
+
+        // Search & Filter
+        function filterMenu() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = foodMenu.filter(item => {
+                const matchesCat = currentCategory === 'All' || item.category === currentCategory;
+                const matchesQuery = item.name.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
+                return matchesCat && matchesQuery;
+            });
+            renderMenu(filtered);
+        }
+
+        // Cart Actions
+        function addToCart(id) {
+            const item = foodMenu.find(f => f.id === id);
+            const existing = cart.find(c => c.id === id);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ ...item, qty: 1 });
+            }
+            updateCartBadge();
+            renderCartItems();
+            toggleCart();
+        }
+
+        function updateCartBadge() {
+            const totalQty = cart.reduce((sum, i) => sum + i.qty, 0);
+            document.getElementById('cartBadge').innerText = totalQty;
+        }
+
+        function toggleCart() {
+            const drawer = document.getElementById('cartDrawer');
+            drawer.classList.toggle('hidden');
+            renderCartItems();
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cartItemsContainer');
+            if (cart.length === 0) {
+                container.innerHTML = `<div class="text-center py-12 text-slate-500 text-sm">Your cart is currently empty.</div>`;
+                document.getElementById('cartTotalPrice').innerText = '$0.00';
+                return;
+            }
+            container.innerHTML = cart.map(item => `
+                <div class="flex items-center justify-between bg-slate-950 p-3 rounded-2xl border border-slate-800">
+                    <div class="flex items-center gap-3">
+                        <img src="${item.image}" class="w-12 h-12 rounded-xl object-cover">
+                        <div>
+                            <h4 class="font-bold text-sm text-white">${item.name}</h4>
+                            <span class="text-xs text-amber-400">$${item.price.toFixed(2)} x ${item.qty}</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="changeQty(${item.id}, -1)" class="w-7 h-7 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-xs font-bold">-</button>
+                        <span class="text-sm font-semibold">${item.qty}</span>
+                        <button onclick="changeQty(${item.id}, 1)" class="w-7 h-7 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-xs font-bold">+</button>
+                    </div>
+                </div>
+            `).join('');
+
+            const total = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+            document.getElementById('cartTotalPrice').innerText = `$${total.toFixed(2)}`;
+        }
+
+        function changeQty(id, delta) {
+            const item = cart.find(c => c.id === id);
+            if (item) {
+                item.qty += delta;
+                if (item.qty <= 0) {
+                    cart = cart.filter(c => c.id !== id);
+                }
+            }
+            updateCartBadge();
+            renderCartItems();
+        }
+
+        function checkoutCart() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            alert('🎉 Order placed successfully! Your VIP meal is on the way.');
+            cart = [];
+            updateCartBadge();
+            toggleCart();
+        }
+
+        // Table Booking Handler
+        function handleBooking(e) {
+            e.preventDefault();
+            document.getElementById('bookingSuccess').classList.remove('hidden');
+            document.getElementById('bookingForm').reset();
+            document.getElementById('bookDate').valueAsDate = new Date();
+            setTimeout(() => {
+                document.getElementById('bookingSuccess').classList.add('hidden');
+            }, 5000);
+        }
+
+        // Live Order Tracking Mock
+        function trackOrder() {
+            const id = document.getElementById('trackInput').value;
+            if (!id) {
+                alert('Please enter a valid Order ID');
+                return;
+            }
+            const bar = document.getElementById('trackProgressBar');
+            const statusText = document.getElementById('trackStatusText');
+            bar.style.width = '85%';
+            statusText.innerHTML = `<i class="fa-solid fa-motorcycle"></i> Out for Delivery - Nearing Location`;
+        }
+
+        // UGC Community Render & Submission
+        function renderUGC() {
+            const grid = document.getElementById('ugcGrid');
+            grid.innerHTML = ugcStories.map(story => `
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-xl space-y-4 pb-6">
+                    <div class="relative h-56">
+                        <img src="${story.image}" class="w-full h-full object-cover">
+                        <span class="absolute bottom-3 left-3 bg-slate-950/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-amber-400 border border-slate-700">
+                            By ${story.author}
+                        </span>
+                    </div>
+                    <div class="px-6 space-y-2">
+                        <h3 class="font-bold text-lg text-white">${story.title}</h3>
+                        <p class="text-slate-400 text-sm">${story.desc}</p>
+                    </div>
+                    <div class="px-6 flex items-center justify-between pt-2 border-t border-slate-800/60 text-xs text-slate-400">
+                        <button onclick="likeStory(${story.id})" class="flex items-center gap-1.5 hover:text-amber-400 transition">
+                            <i class="fa-solid fa-heart text-red-500"></i> ${story.likes} Likes
+                        </button>
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-comment text-slate-500"></i> ${story.comments} Comments</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function likeStory(id) {
+            const story = ugcStories.find(s => s.id === id);
+            if (story) {
+                story.likes++;
+                renderUGC();
+            }
+        }
+
+        function openUGCModal() {
+            document.getElementById('ugcModal').classList.remove('hidden');
+        }
+
+        function closeUGCModal() {
+            document.getElementById('ugcModal').classList.add('hidden');
+        }
+
+        function handleUGCSubmit(e) {
+            e.preventDefault();
+            const newStory = {
+                id: ugcStories.length + 1,
+                title: document.getElementById('ugcTitle').value,
+                author: document.getElementById('ugcAuthor').value,
+                image: document.getElementById('ugcImage').value,
+                desc: document.getElementById('ugcDesc').value,
+                likes: 1,
+                comments: 0
+            };
+            ugcStories.unshift(newStory);
+            renderUGC();
+            closeUGCModal();
+            alert('🌟 Your food story has been published successfully!');
+        }
+
+        // Auth Modal Controls
+        function openAuthModal(mode) {
+            authMode = mode;
+            const modal = document.getElementById('authModal');
+            const title = document.getElementById('authTitle');
+            const btn = document.getElementById('authSubmitBtn');
+            const nameField = document.getElementById('nameFieldContainer');
+            const toggleText = document.getElementById('authToggleText');
+
+            if (mode === 'signin') {
+                title.innerText = 'Sign In to VIP Account';
+                btn.innerText = 'Sign In';
+                nameField.style.display = 'none';
+                document.getElementById('authName').required = false;
+                toggleText.innerHTML = `Don't have an account? <button onclick="switchAuthMode()" class="text-amber-400 font-bold underline">Sign Up</button>`;
+            } else {
+                title.innerText = 'Create VIP Account';
+                btn.innerText = 'Sign Up';
+                nameField.style.display = 'block';
+                document.getElementById('authName').required = true;
+                toggleText.innerHTML = `Already have an account? <button onclick="switchAuthMode()" class="text-amber-400 font-bold underline">Sign In</button>`;
+            }
+            modal.classList.remove('hidden');
+        }
+
+        function closeAuthModal() {
+            document.getElementById('authModal').classList.add('hidden');
+        }
+
+        function switchAuthMode() {
+            openAuthModal(authMode === 'signup' ? 'signin' : 'signup');
+        }
+
+        function handleAuthSubmit(e) {
+            e.preventDefault();
+            alert(authMode === 'signup' ? '🎉 Account created successfully! Welcome to Savorly VIP.' : '👋 Welcome back! Signed in successfully.');
+            closeAuthModal();
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
